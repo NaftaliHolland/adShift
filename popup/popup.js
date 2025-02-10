@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sortedTasks.forEach(task => {
             const taskElement = createTaskElement(task);
-            taskList.appendChild(taaskElement);
+            taskList.appendChild(taskElement);
         });
     }
 
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const dueDate = new Date(task.dueDate).toLocaleDateString();
 
-        div.ineerHTML = `
+        div.innerHTML = `
             <div class="task-content>
                 <p class="task-text">${task.text}</p>
                 <p class="task-date">Due: ${dueDate}</p>
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
         const deleteBtn = div.querySelector('.delete-btn');
-        deleteBtn.addEventListener('clikc', async () => {
+        deleteBtn.addEventListener('click', async () => {
             await deleteTask(task.id);
             loadTasks();
         });
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return div;
     }
 
-    async function delteTask(taskId) {
+    async function deleteTask(taskId) {
         const { tasks = [] } = await chrome.storage.local.get('tasks');
         const updatedTasks = tasks.filter(task => task.id !== taskId);
         await chrome.storage.local.set({ tasks: updatedTasks });
