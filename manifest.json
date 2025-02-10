@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "Add Shift",
+  "version": "1.0",
+  "description": "Replaces ads with your task reminders",
+  "permissions": ["storage"],
+  "action": {
+    "default_popup": "popup/popup.html"
+  }
+}
