@@ -30,10 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const { tasks = [] } = await chrome.storage.local.get('tasks');
 
         tasks.push(task);
-        console.log("TAsks from save TAsk", tasks);
 
         await chrome.storage.local.set({ tasks });
-        console.log("TAsks from save Tasks 2", await chrome.storage.local.get('tasks'));
     }
 
 
