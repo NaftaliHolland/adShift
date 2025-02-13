@@ -20,7 +20,9 @@ function createTaskReminder(task) {
     const reminder = document.createElement('div');
     reminder.className = 'task-reminder-extension';
 
-    const dueDate = newDate(task.dueDate).toLocalDateString();
+    console.log("This is the reminder", reminder);
+    console.log(typeof task.dueDate);
+    const dueDate = new Date(task.dueDate).toLocaleDateString();
 
     reminder.style.cssText = `
         padding: 15px;
@@ -64,13 +66,12 @@ async function replaceAds() {
 
     AD_SELECTORS.forEach(selector => {
         document.querySelectorAll(selector).forEach(adElement => {
-            console.log("Add element found", adElement);
             if (replacedElements.has(adElement)) return;
 
             const rect = adElement.getBoundingClientRect();
             if (rect.width === 0 || rect.height === 0) return;
 
-            const task = tasks[taskIndex % tasks.lenght];
+            const task = tasks[taskIndex % tasks.length];
             const reminder = createTaskReminder(task);
 
             reminder.style.width = rect.width + 'px';
