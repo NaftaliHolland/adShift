@@ -1,17 +1,25 @@
 const AD_SELECTORS = [
-    '[class*="ad"]',
-    '[class*="sponsored"]',
-    '[class*="promo"]', 
-    '[class*="banner"]',
-    '[id*="ad"]',
-    '[id*="sponsored"]',
-    '[id*="promo"]',
-    '[id*="banner"]',
-    'iframe[src*="ads"]',
-    'iframe[src*="doubleclick"]',
-    'iframe[src*="googlesyndication"]',
-    'iframe[src*="taboola"]',
-    'iframe[src*="outbrain"]' 
+    // Generic ad-related classes & IDs (case-insensitive)
+    '[class*=" ad " i]', '[class^="ad-" i]', '[class$="-ad" i]', '[class*="-ad-" i]', 
+    '[id^="ad-" i]', '[id*="-ad-" i]', '[id$="-ad" i]', 
+    '[class*=" sponsored " i]', '[id*="sponsored" i]',
+    '[class*=" promo " i]', '[id*="promo" i]',
+    '[class*=" banner " i]', '[id*="banner" i]',
+    
+    // Common ad containers
+    '[class*="ad-container" i]', '[class*="ad-slot" i]', '[class*="ad-placeholder" i]',
+    '[class*="ad-wrapper" i]', '[class*="ad-unit" i]', '[class*="adsbygoogle" i]', 
+    
+    // Specific ad platforms
+    'iframe[src*="ads" i]', 'iframe[src*="doubleclick" i]', 'iframe[src*="googlesyndication" i]',
+    'iframe[src*="adservice" i]', 'iframe[src*="taboola" i]', 'iframe[src*="outbrain" i]',
+    'iframe[src*="revcontent" i]', 'iframe[src*="mgid.com" i]',
+    
+    // Inline ad scripts
+    'script[src*="ads" i]', 'script[src*="doubleclick" i]', 'script[src*="googlesyndication" i]',
+    
+    // Sponsored links
+    'a[href*="sponsored" i]', 'a[href*="adclick" i]', 'a[href*="utm_source=ad" i]'
 ];
 
 let replacedElements = new Set();
@@ -20,8 +28,6 @@ function createTaskReminder(task) {
     const reminder = document.createElement('div');
     reminder.className = 'task-reminder-extension';
 
-    console.log("This is the reminder", reminder);
-    console.log(typeof task.dueDate);
     const dueDate = new Date(task.dueDate).toLocaleDateString();
 
     reminder.style.cssText = `
